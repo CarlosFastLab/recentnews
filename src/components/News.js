@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/News.css';
 
 const News = ({ news, loading }) => {
     if (loading) {
@@ -14,12 +15,12 @@ const News = ({ news, loading }) => {
                     <div className="filtered-news-card__body">
                         <h3 className="filtered-news-card__title">{news.title}</h3>
                         <span className="filtered-news-card__author">by {news.author}</span>
-                        <p className="filtered-news-card__description">{news.description}</p>                        
+                        <p className="filtered-news-card__description">{news.description}</p>
                     </div>
                 </div>
             ))}
         </section>
-    )
+    );
 }
 
 export default News;

@@ -1,0 +1,43 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2% 20%;
+  }
+  
+  .nav__img{
+    width: 8vh;
+  }
+  
+  .nav__button{
+    flex: auto;
+    margin: 0 12px;
+    background-color: transparent;
+    border: none;
+    color: rgb(125, 126, 125);
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .nav__button:hover{
+    color: aqua;
+    font-size: 17px;
+  }
+  
+  .nav__login-button{
+    background-color: transparent;
+    border: none;
+    color: rgb(50, 134, 238);
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .nav__login-button:hover{
+    color: aqua;
+    font-size: 17px;
+  }
