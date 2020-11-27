@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import axios from 'axios';
-import logo from './assets/logo@2x.png'
+import api from './services/api';
 import News from './components/News';
+import Header from './components/Header';
 
 export default function App() {
 
@@ -11,7 +11,7 @@ export default function App() {
   const [newsPerPage, setNewsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState([
-    { category: 'sports', label: 'SPORTS', active: false },
+    { category: 'sports', label: 'SPORTS', active: true },
     { category: 'politics', label: 'POLITICS', active: false },
     { category: 'business', label: 'BUSINESS', active: false },
     { category: 'technology', label: 'TECH', active: false },
@@ -24,8 +24,7 @@ export default function App() {
 
       setLoading(true);
 
-      const response = await axios.get(`https://api.currentsapi.services/v1/latest-news`, {
-
+      const response = await api.get(`/latest-news`, {
         params: {
           language: 'en',
           category: filters[filterIndex].category,
@@ -42,8 +41,9 @@ export default function App() {
 
   }, [filters, filterIndex]);
 
-  function handleFilter(index) {
-    setFilterIndex(index);
+
+  function handleFilter(e) {
+    setFilterIndex(e.target.value);
   }
 
   // Get current news
@@ -53,26 +53,10 @@ export default function App() {
 
   return (
     <>
-      <header className="nav">
-        <img className="nav__img" src={logo} alt="logo" />
-        <div className="nav__buttons" active={filterIndex}>
-          {filters.map((filter, index) => (
-            <button className="nav__button" type="button" key={filter.id} onClick={() => handleFilter(index)}>{filter.label}</button>
-          ))}
-            <button className="nav__login-button">LOGIN</button>
-        </div>
-      </header>
-
-
-        <h1 className="filtered-news-title">Noticias filtradas</h1>
-        <News news={currentNews} loading={loading} />
-
-
+      <Header handleFilter={handleFilter} />
       <hr />
-
-      <div>
-        <h1>Notícias que não são filtradas</h1>
-      </div>
+      <h1 className="filtered-news-title">RECENT NEWS</h1>
+      <News news={currentNews} loading={loading} />
     </>
   );
 }
