@@ -8,9 +8,9 @@ export default function App() {
 
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [newsPerPage, setNewsPerPage] = useState(3);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filters, setFilters] = useState([
+  const [newsPerPage] = useState(3);
+  const [currentPage] = useState(1);
+  const [filters] = useState([
     { category: 'sports', label: 'SPORTS', active: true },
     { category: 'politics', label: 'POLITICS', active: false },
     { category: 'business', label: 'BUSINESS', active: false },
@@ -23,7 +23,6 @@ export default function App() {
     async function loadNews() {
 
       setLoading(true);
-
       const response = await api.get(`/latest-news`, {
         params: {
           language: 'en',
